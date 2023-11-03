@@ -46,8 +46,8 @@ class _CustomPasswordTextFormFieldState
             if (value == null || value.isEmpty) {
               return 'Password is required';
             }
-            if (value.length < 8) {
-              return 'Password must be at least 8 characters long';
+            if (value.length < 6) {
+              return 'Password must be at least 6 characters long';
             }
             if (value == "12345678") {
               return 'Choose a stronger password';
