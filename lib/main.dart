@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intern2grow/views/auth/create_account_view.dart';
+import 'package:intern2grow/views/profile_view.dart';
 
 void main() {
   runApp(const Intern2Grow());

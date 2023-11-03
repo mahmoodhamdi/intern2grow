@@ -33,6 +33,14 @@ class CustomTextFormField extends StatelessWidget {
           height: 8,
         ),
         TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return '$fieldTitle is required';
+            }
+            // Regular expression for a more comprehensive email validation
+
+            return null; // Return null if the input is valid
+          },
           decoration: InputDecoration(
               hintText: hint,
               hintStyle: const TextStyle(

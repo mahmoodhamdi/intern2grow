@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class MainStack extends StatelessWidget {
   const MainStack({
-    super.key,
+    super.key, required this.imageLink,
   });
-
+ final String imageLink;
   @override
   Widget build(BuildContext context) {
     return Stack(clipBehavior: Clip.none, children: [
@@ -28,7 +28,7 @@ class MainStack extends StatelessWidget {
               )
             ],
           ),
-          child: Image.asset("assets/images/Rectangle 1136.png"),
+          child: Image.asset(imageLink),
         ),
       ),
     ]);
