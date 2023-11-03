@@ -12,10 +12,8 @@ Future<User?> getUserByUsernameAndPassword(
 
     if (response.statusCode == 200) {
       List<dynamic> usersDataList = json.decode(response.body)['users'];
-      print(usersDataList);
       for (var userData in usersDataList) {
         User user = User.fromJson(userData);
-        print(user.username);
         if (user.username == username && user.password == password) {
           return user;
         }
@@ -24,25 +22,10 @@ Future<User?> getUserByUsernameAndPassword(
       // If no matching user was found, return null.
       return null;
     } else {
-      print('Request failed with status: ${response.statusCode}');
       return null;
     }
   } catch (e) {
-    print('Error: $e');
+    
     return null;
   }
-}
-
-Future<User?> login(String username, String password) async {
-  final user = await getUserByUsernameAndPassword(username, password);
-  if (user != null) {
-    print(user.username);
-    print(user.gender);
-    print(user.email);
-
-    return user;
-  } else {
-    print('User not found or authentication failed.');
-  }
-  return null;
 }

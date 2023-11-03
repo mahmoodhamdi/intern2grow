@@ -1,8 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intern2grow/services/auth_service.dart';
+import 'package:intern2grow/cubit/auth_cubit.dart';
 import 'package:intern2grow/views/auth/create_account_view.dart';
-import 'package:intern2grow/views/profile_view.dart';
 import 'package:intern2grow/widgets/custom_button.dart';
 import 'package:intern2grow/widgets/custom_password_text_form_field.dart';
 import 'package:intern2grow/widgets/custom_stack.dart';
@@ -26,187 +28,185 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(
-      inAsyncCall: inAsyncCall,
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 250,
-                  width: double.infinity,
-                  child: MainStack(
-                    imageLink: "assets/images/Rectangle 1136.png",
-                  ),
-                ),
-                const SizedBox(
-                  height: 44,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                      key: formKey,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            width: 345,
-                            child: Text(
-                              'Log in to your account',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF2A2B2E),
-                                fontSize: 20,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                height: 0,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          CustomTextFormField(
-                            fieldTitle: "Username",
-                            controller: userNameController,
-                            icon: const Icon(
-                              FontAwesomeIcons.x,
-                              color: Color(0xff808194),
-                              size: 8,
-                            ),
-                            hint: '',
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          CustomPasswordTextFormField(
-                            fieldTitle: "Password",
-                            controller: passwordController,
-                            icon: const Icon(
-                              FontAwesomeIcons.eyeSlash,
-                              color: Color(0xff808194),
-                              size: 16,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: BlocProvider.of<AuthCubit>(context).inAsyncCall,
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 250,
+                      width: double.infinity,
+                      child: MainStack(
+                        imageLink: "assets/images/Rectangle 1136.png",
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 44,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Form(
+                          key: formKey,
+                          child: Column(
                             children: [
+                              const SizedBox(
+                                width: 345,
+                                child: Text(
+                                  'Log in to your account',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF2A2B2E),
+                                    fontSize: 20,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 22,
+                              ),
+                              CustomTextFormField(
+                                fieldTitle: "Username",
+                                controller: userNameController,
+                                icon: const Icon(
+                                  FontAwesomeIcons.x,
+                                  color: Color(0xff808194),
+                                  size: 8,
+                                ),
+                                hint: '',
+                              ),
+                              const SizedBox(
+                                height: 22,
+                              ),
+                              CustomPasswordTextFormField(
+                                fieldTitle: "Password",
+                                controller: passwordController,
+                                icon: const Icon(
+                                  FontAwesomeIcons.eyeSlash,
+                                  color: Color(0xff808194),
+                                  size: 16,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 22,
+                              ),
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Checkbox(
-                                      materialTapTargetSize:
-                                          MaterialTapTargetSize.shrinkWrap,
-                                      activeColor: const Color(0xff007BFF),
-                                      shape: const RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              color: Color(0xff808194)),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4))),
-                                      value: value,
-                                      onChanged: (newValue) {
-                                        value = newValue!;
-                                        setState(() {});
-                                      }),
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          activeColor: const Color(0xff007BFF),
+                                          shape: const RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Color(0xff808194)),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(4))),
+                                          value: value,
+                                          onChanged: (newValue) {
+                                            value = newValue!;
+                                            setState(() {});
+                                          }),
+                                      const Text(
+                                        "Remember me",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0xff2a2b2e),
+                                          height: 17 / 14,
+                                        ),
+                                        textAlign: TextAlign.left,
+                                      )
+                                    ],
+                                  ),
                                   const Text(
-                                    "Remember me",
+                                    "Forgot password?",
                                     style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationStyle:
+                                          TextDecorationStyle.solid,
+                                      decorationThickness: 2.0,
+                                      decorationColor: Color(0xff4F90F0),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700,
                                       color: Color(0xff2a2b2e),
                                       height: 17 / 14,
                                     ),
-                                    textAlign: TextAlign.left,
                                   )
                                 ],
                               ),
-                              const Text(
-                                "Forgot password?",
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  decorationThickness: 2.0,
-                                  decorationColor: Color(0xff4F90F0),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xff2a2b2e),
-                                  height: 17 / 14,
-                                ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          MainButton(
-                            onTap: () async{
-                              if (formKey.currentState!.validate()) {
-                                setState(() {
-                                  inAsyncCall = true;
-                                });
-                          await      login(userNameController.text,
-                                    passwordController.text);
-                                setState(() {
-                                  inAsyncCall = false;
-                                });
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ProfileView(),
-                                    ));
-                              }
-                            },
-                            buttonColor: const Color(0xff007BFF),
-                            buttonTitle: "Log in",
-                          ),
-                          const SizedBox(
-                            height: 22,
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Don’t have an account?',
-                                style: TextStyle(
-                                  color: Color(0xFF2A2B2E),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  height: 0,
-                                ),
+                              const SizedBox(
+                                height: 22,
                               ),
-                              GestureDetector(
-                                onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CreateAccountView(),
-                                    )),
-                                child: const Text(
-                                  'Register',
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    decorationStyle: TextDecorationStyle.solid,
-                                    decorationThickness: 2.0,
-                                    decorationColor: Color(0xFF4F90F0),
-                                    color: Color(0xFF2A2B2E),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    height: 0,
+                              MainButton(
+                                onTap: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    await BlocProvider.of<AuthCubit>(context)
+                                        .login(userNameController.text,
+                                            passwordController.text, context);
+                                  }
+                                },
+                                buttonColor: const Color(0xff007BFF),
+                                buttonTitle: "Log in",
+                              ),
+                              const SizedBox(
+                                height: 22,
+                              ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Don’t have an account?',
+                                    style: TextStyle(
+                                      color: Color(0xFF2A2B2E),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
                                   ),
-                                ),
+                                  GestureDetector(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CreateAccountView(),
+                                        )),
+                                    child: const Text(
+                                      'Register',
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        decorationStyle:
+                                            TextDecorationStyle.solid,
+                                        decorationThickness: 2.0,
+                                        decorationColor: Color(0xFF4F90F0),
+                                        color: Color(0xFF2A2B2E),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
-                          )
-                        ],
-                      )),
+                          )),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
