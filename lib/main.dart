@@ -12,6 +12,7 @@ class Intern2Grow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Inter"),
       home: const CreateAccount(),
     );

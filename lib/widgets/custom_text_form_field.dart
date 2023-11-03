@@ -22,13 +22,12 @@ class CustomTextFormField extends StatelessWidget {
         Text(
           fieldTitle,
           style: const TextStyle(
-            fontFamily: "Inter",
+            color: Color(0xFF808194),
             fontSize: 14,
+            fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
-            color: Color(0xff808194),
-            height: 17 / 14,
+            height: 0,
           ),
-          textAlign: TextAlign.left,
         ),
         const SizedBox(
           height: 8,
