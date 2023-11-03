@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intern2grow/views/auth/login_view.dart';
+import 'package:intern2grow/widgets/custom_button.dart';
 import 'package:intern2grow/widgets/custom_password_text_form_field.dart';
 import 'package:intern2grow/widgets/custom_stack.dart';
 import 'package:intern2grow/widgets/custom_text_form_field.dart';
 
-class CreateAccount extends StatefulWidget {
-  const CreateAccount({super.key});
+class CreateAccountView extends StatefulWidget {
+  const CreateAccountView({super.key});
 
   @override
-  State<CreateAccount> createState() => _CreateAccountState();
+  State<CreateAccountView> createState() => _CreateAccountViewState();
 }
 
-class _CreateAccountState extends State<CreateAccount> {
+class _CreateAccountViewState extends State<CreateAccountView> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -89,7 +90,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         color: Color(0xff808194),
                         size: 16,
                       ),
-                      hint: 'ahmed0saber',
+                    
                     ),
                     const SizedBox(
                       height: 22,
@@ -142,22 +143,9 @@ class _CreateAccountState extends State<CreateAccount> {
                     const SizedBox(
                       height: 22,
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 44,
-                      decoration: const BoxDecoration(
-                          color: Color(0xff007BFF),
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                      child: const Center(
-                        child: Text(
-                          "Register",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    const MainButton(
+                      buttonColor: Color(0xff007BFF),
+                      buttonTitle: "Register",
                     ),
                     const SizedBox(
                       height: 22,

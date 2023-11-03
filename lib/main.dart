@@ -14,7 +14,7 @@ class Intern2Grow extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Inter"),
-      home: const CreateAccount(),
+      home: const CreateAccountView(),
     );
   }
 }

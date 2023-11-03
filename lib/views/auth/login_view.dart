@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intern2grow/views/auth/create_account_view.dart';
+import 'package:intern2grow/widgets/custom_button.dart';
 import 'package:intern2grow/widgets/custom_password_text_form_field.dart';
 import 'package:intern2grow/widgets/custom_stack.dart';
 import 'package:intern2grow/widgets/custom_text_form_field.dart';
@@ -40,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(
                       width: 345,
                       child: Text(
-                        'Create new account',
+                        'Log in to your account',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF2A2B2E),
@@ -62,20 +64,7 @@ class _LoginViewState extends State<LoginView> {
                         color: Color(0xff808194),
                         size: 8,
                       ),
-                      hint: 'ahmed0saber',
-                    ),
-                    const SizedBox(
-                      height: 22,
-                    ),
-                    CustomTextFormField(
-                      fieldTitle: "Email",
-                      controller: emailController,
-                      icon: const Icon(
-                        FontAwesomeIcons.x,
-                        color: Color(0xff808194),
-                        size: 8,
-                      ),
-                      hint: 'ahmed0saber',
+                      hint: '',
                     ),
                     const SizedBox(
                       height: 22,
@@ -88,7 +77,6 @@ class _LoginViewState extends State<LoginView> {
                         color: Color(0xff808194),
                         size: 16,
                       ),
-                      hint: 'ahmed0saber',
                     ),
                     const SizedBox(
                       height: 22,
@@ -124,7 +112,7 @@ class _LoginViewState extends State<LoginView> {
                           ],
                         ),
                         const Text(
-                          "Have a problem?",
+                          "Forgot password?",
                           style: TextStyle(
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.solid,
@@ -141,30 +129,17 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(
                       height: 22,
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 44,
-                      decoration: const BoxDecoration(
-                          color: Color(0xff007BFF),
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                      child: const Center(
-                        child: Text(
-                          "Register",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
+                    const MainButton(
+                      buttonColor: Color(0xff007BFF),
+                      buttonTitle: "Log in",
                     ),
                     const SizedBox(
                       height: 22,
                     ),
-                    const Row(
+                    Row(
                       children: [
-                        Text(
-                          'Already have an account?',
+                        const Text(
+                          'Don’t have an account?',
                           style: TextStyle(
                             color: Color(0xFF2A2B2E),
                             fontSize: 14,
@@ -172,17 +147,24 @@ class _LoginViewState extends State<LoginView> {
                             height: 0,
                           ),
                         ),
-                        Text(
-                          'Log in ',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationStyle: TextDecorationStyle.solid,
-                            decorationThickness: 2.0,
-                            decorationColor: Color(0xFF4F90F0),
-                            color: Color(0xFF2A2B2E),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            height: 0,
+                        GestureDetector(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CreateAccountView(),
+                              )),
+                          child: const Text(
+                            'Register',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.solid,
+                              decorationThickness: 2.0,
+                              decorationColor: Color(0xFF4F90F0),
+                              color: Color(0xFF2A2B2E),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              height: 0,
+                            ),
                           ),
                         )
                       ],

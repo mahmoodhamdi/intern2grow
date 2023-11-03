@@ -4,13 +4,12 @@ class CustomPasswordTextFormField extends StatefulWidget {
   const CustomPasswordTextFormField({
     super.key,
     required this.controller,
-    required this.hint,
     required this.icon,
     required this.fieldTitle,
   });
 
   final TextEditingController controller;
-  final String hint;
+
   final Icon icon;
   final String fieldTitle;
 
@@ -45,14 +44,6 @@ class _CustomPasswordTextFormFieldState
         TextFormField(
           obscureText: obscureText,
           decoration: InputDecoration(
-              hintText: widget.hint,
-              hintStyle: const TextStyle(
-                fontFamily: "Inter",
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Color(0xff2a2b2e),
-                height: 17 / 14,
-              ),
               suffixIcon: IconButton(
                   onPressed: () {
                     if (obscureText == true) {
